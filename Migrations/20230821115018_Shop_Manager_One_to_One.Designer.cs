@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230818101527_InitalCommit")]
-    partial class InitalCommit
+    [Migration("20230821115018_Shop_Manager_One_to_One")]
+    partial class Shop_Manager_One_to_One
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,53 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Managers");
+                });
+
+            modelBuilder.Entity("DOT_NET_7_Assignment_01_Swapno_SuperShop.Models.Shop", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ManagerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ManagerId")
+                        .IsUnique();
+
+                    b.ToTable("Shops");
+                });
+
+            modelBuilder.Entity("DOT_NET_7_Assignment_01_Swapno_SuperShop.Models.Shop", b =>
+                {
+                    b.HasOne("DOT_NET_7_Assignment_01_Swapno_SuperShop.Models.Manager", "Manager")
+                        .WithOne("Shop")
+                        .HasForeignKey("DOT_NET_7_Assignment_01_Swapno_SuperShop.Models.Shop", "ManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Manager");
+                });
+
+            modelBuilder.Entity("DOT_NET_7_Assignment_01_Swapno_SuperShop.Models.Manager", b =>
+                {
+                    b.Navigation("Shop");
                 });
 #pragma warning restore 612, 618
         }

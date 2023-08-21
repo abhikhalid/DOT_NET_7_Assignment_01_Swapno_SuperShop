@@ -1,42 +1,19 @@
 global using AutoMapper;
-global using DOT_NET_7_Assignment_01_Swapno_SuperShop.Data;
+global using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
-
+using Microsoft.OpenApi.Models;
+using DOT_NET_7_Assignment_01_Swapno_SuperShop.Data;
+using DOT_NET_7_Assignment_01_Swapno_SuperShop.Services.ShopService;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddScoped<IAuthRepository, AuthRepository>();
-//registering automapper
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
-
-//registering dbContext
-builder.Services.AddDbContext<DataContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// Authentication Middleware and Authorize Attribute
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8
-                    .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value!)),
-            ValidateIssuer = false,
-            ValidateAudience = false
-        };
-    });
+// builder.Services.AddSwaggerGen();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -51,6 +28,30 @@ builder.Services.AddSwaggerGen(c =>
     c.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
+//registering automapper
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+//Registering our shop service
+builder.Services.AddScoped<IShopService, ShopService>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+//Adds a default implementation for the IHttpContextAccessor service.
+builder.Services.AddHttpContextAccessor();
+//registering dbContext
+builder.Services.AddDbContext<DataContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Authentication Middleware and Authorize Attribute
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8
+                    .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value!)),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
+
 
 var app = builder.Build();
 
@@ -62,6 +63,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

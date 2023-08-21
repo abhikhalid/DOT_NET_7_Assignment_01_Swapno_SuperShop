@@ -5,7 +5,7 @@
 namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Migrations
 {
     /// <inheritdoc />
-    public partial class InitalCommit : Migration
+    public partial class initalCommit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
