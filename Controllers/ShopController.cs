@@ -39,5 +39,11 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Controllers
         {
             return Ok(await _shopService.AddShopProduct(newShopProduct));
         }
+
+        [HttpGet("{shopId}")]
+        public async Task<ActionResult<ServiceResponse<GetShopDto>>> GetShopById(int shopId)
+        {
+            return Ok(await _shopService.GetShopById(shopId));
+        }
     }
 }

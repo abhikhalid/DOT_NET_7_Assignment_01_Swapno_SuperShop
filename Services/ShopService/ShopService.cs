@@ -59,21 +59,68 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Services.ShopService
             return serviceResponse;
         }
 
-        public Task<ServiceResponse<List<GetShopDto>>> DeleteShop(int shopId)
+        public async Task<ServiceResponse<List<GetShopDto>>> DeleteShop(int shopId)
         {
-            throw new NotImplementedException();
+            var serviceResponse = new ServiceResponse<List<GetShopDto>>();
+
+            try
+            {
+                var shop = await _context.Shops.FirstOrDefaultAsync(shop => shop.Id == shopId
+                          && shop.Manager!.Id == GetManagerId());
+
+                if (shop is null)
+                {
+                    throw new Exception("Shop with Id " + Id + " not found!");
+                }
+
+                _context.Shops.Remove(shop);
+                await _context.SaveChangesAsync();
+
+                serviceResponse.Data = await _context.Shops
+                    .Where(s => s.Manager!.Id == GetManagerId())
+                    .Select(s => _mapper.Map<GetShopDto>(s)).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+
+            return serviceResponse;
         }
 
-        public Task<ServiceResponse<GetShopDto>> GetShopById(int shopId)
+        public async Task<ServiceResponse<GetShopDto>> GetShopById(int shopId)
         {
-            throw new NotImplementedException();
+            var serviceResponse = new ServiceResponse<GetShopDto>();
+
+            var dbShop = await _context.Shops
+                         .Include(shop => shop.Manager)
+                         .Include(shop => shop.Products)
+                         .FirstOrDefaultAsync(shop => shop.Id == shopId && shop.Manager!.Id == GetManagerId());
+
+            serviceResponse.Data = _mapper.Map<GetShopDto>(dbShop);
+
+            return serviceResponse;
         }
 
         public Task<ServiceResponse<GetShopDto>> UpdateShop(UpdateShopDto updateShop)
         {
-            throw new NotImplementedException();
+            var serviceResponse = new ServiceResponse<GetShopDto>();
+
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+
+            return serviceResponse;
         }
 
+        // many to many relationship
         public async Task<ServiceResponse<GetShopDto>> AddShopProduct(AddShopProductDto newShopProduct)
         {
             var response = new ServiceResponse<GetShopDto>();
