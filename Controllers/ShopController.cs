@@ -34,6 +34,10 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Controllers
             return Ok(await _shopService.AddShop(newShop));
         }
 
-
+        [HttpPost]
+        public async Task<ActionResult<ServiceResponse<GetShopDto>>> AddShopProduct(AddShopProductDto newShopProduct)
+        {
+            return Ok(await _shopService.AddShopProduct(newShopProduct));
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Services.ShopService
 
             var dbShops = await _context.Shops
                                 .Include(s => s.Manager)
-                                //.Include(s => s.Products)
+                                .Include(s => s.Products)
                                 .Where(s => s.Manager!.Id == GetManagerId())
                                 .ToListAsync();
 
@@ -74,9 +74,47 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Services.ShopService
             throw new NotImplementedException();
         }
 
-        public Task<ServiceResponse<GetShopDto>> AddShopProduct(AddShopProductDto newShopProduct)
+        public async Task<ServiceResponse<GetShopDto>> AddShopProduct(AddShopProductDto newShopProduct)
         {
-            throw new NotImplementedException();
+            var response = new ServiceResponse<GetShopDto>();
+
+            try
+            {
+                var shop = await _context.Shops
+                                 .Include(shop => shop.Manager)
+                                 .Include(shop => shop.Products)
+                                 .FirstOrDefaultAsync(shop => shop.Id == newShopProduct.ShopId && shop.Manager!.Id == GetManagerId());
+
+                if (shop is null)
+                {
+                    response.Success = false;
+                    response.Message = "Shop not found!";
+                    return response;
+                }
+
+                var product = await _context.Products
+                                    .FirstOrDefaultAsync(product => product.Id == newShopProduct.ProductId);
+
+                if (product is null)
+                {
+                    response.Success = false;
+                    response.Message = "Product not found!";
+                    return response;
+                }
+
+                shop.Products!.Add(product);
+
+                await _context.SaveChangesAsync();
+
+
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
         }
     }
 }

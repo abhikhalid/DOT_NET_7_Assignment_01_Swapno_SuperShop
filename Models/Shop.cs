@@ -18,5 +18,7 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Models
         public Manager? Manager { get; set; }
 
         public int ManagerId { get; set; }
+
+        public List<Product>? Products { get; set; }
     }
 }
