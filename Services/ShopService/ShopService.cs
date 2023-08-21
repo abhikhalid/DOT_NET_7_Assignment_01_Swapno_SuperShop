@@ -106,7 +106,7 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Services.ShopService
 
                 await _context.SaveChangesAsync();
 
-
+                response.Data = _mapper.Map<GetShopDto>(shop);
             }
             catch (Exception ex)
             {

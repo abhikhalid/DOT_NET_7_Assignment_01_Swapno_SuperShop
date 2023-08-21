@@ -17,6 +17,6 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Dtos.Shop
 
         public GetManagerDto? Manager { get; set; }
 
-        public List<GetProductDto>? Product { get; set; }
+        public List<GetProductDto>? Products { get; set; }
     }
 }
