@@ -17,9 +17,9 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().HasData(
-                new Product { Id = 1, ProductName = "IPhone", Price = 302324 },
-                new Product { Id = 2, ProductName = "Macbook", Price = 23450 },
-                new Product { Id = 3, ProductName = "Laptop", Price = 22340 }
+                new Product { Id = 1, ProductName = "IPhone", Price = 302324, Quantity = 100 },
+                new Product { Id = 2, ProductName = "Macbook", Price = 23450, Quantity = 100 },
+                new Product { Id = 3, ProductName = "Laptop", Price = 22340, Quantity = 100 }
             );
         }
 
