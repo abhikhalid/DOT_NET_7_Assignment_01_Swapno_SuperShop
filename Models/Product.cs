@@ -13,6 +13,9 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Models
 
     public float Price { get; set; }
 
+
+    public int Quantity { get; set; }
+
     public List<Shop>? Shops { get; set; }
   }
 }

@@ -6,6 +6,7 @@ using Swashbuckle.AspNetCore.Filters;
 using Microsoft.OpenApi.Models;
 using DOT_NET_7_Assignment_01_Swapno_SuperShop.Data;
 using DOT_NET_7_Assignment_01_Swapno_SuperShop.Services.ShopService;
+using DOT_NET_7_Assignment_01_Swapno_SuperShop.Services.CustomerService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 //Registering our shop service
 builder.Services.AddScoped<IShopService, ShopService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 //Adds a default implementation for the IHttpContextAccessor service.
 builder.Services.AddHttpContextAccessor();
