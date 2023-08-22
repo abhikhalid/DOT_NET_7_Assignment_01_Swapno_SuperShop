@@ -15,6 +15,6 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Models
 
         public string MobileNo { get; set; } = string.Empty;
 
-        public List<Invoice> Invoices { get; set; }
+        public List<Invoice>? Invoices { get; set; }
     }
 }
