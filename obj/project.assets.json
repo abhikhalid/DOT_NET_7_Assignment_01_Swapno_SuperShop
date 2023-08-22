@@ -4068,19 +4068,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\abhik\\.nuget\\packages\\": {}
+    "C:\\Users\\Bjit\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Coding\\Development\\C#\\DOT_NET_7_Assignment_01_Swapno_SuperShop\\DOT_NET_7_Assignment_01_Swapno_SuperShop.csproj",
+      "projectUniqueName": "G:\\Practice\\.NET 7 - Shwapno SuperShop\\DOT_NET_7_Assignment_01_Swapno_SuperShop\\DOT_NET_7_Assignment_01_Swapno_SuperShop.csproj",
       "projectName": "DOT_NET_7_Assignment_01_Swapno_SuperShop",
-      "projectPath": "d:\\Coding\\Development\\C#\\DOT_NET_7_Assignment_01_Swapno_SuperShop\\DOT_NET_7_Assignment_01_Swapno_SuperShop.csproj",
-      "packagesPath": "C:\\Users\\abhik\\.nuget\\packages\\",
-      "outputPath": "d:\\Coding\\Development\\C#\\DOT_NET_7_Assignment_01_Swapno_SuperShop\\obj\\",
+      "projectPath": "G:\\Practice\\.NET 7 - Shwapno SuperShop\\DOT_NET_7_Assignment_01_Swapno_SuperShop\\DOT_NET_7_Assignment_01_Swapno_SuperShop.csproj",
+      "packagesPath": "C:\\Users\\Bjit\\.nuget\\packages\\",
+      "outputPath": "G:\\Practice\\.NET 7 - Shwapno SuperShop\\DOT_NET_7_Assignment_01_Swapno_SuperShop\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\abhik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Bjit\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

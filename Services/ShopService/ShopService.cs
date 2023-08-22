@@ -70,7 +70,7 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Services.ShopService
 
                 if (shop is null)
                 {
-                    throw new Exception("Shop with Id " + Id + " not found!");
+                    throw new Exception("Shop with Id " + shopId + " not found!");
                 }
 
                 _context.Shops.Remove(shop);
@@ -103,13 +103,13 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Services.ShopService
             return serviceResponse;
         }
 
-        public Task<ServiceResponse<GetShopDto>> UpdateShop(UpdateShopDto updateShop)
+        public async Task<ServiceResponse<GetShopDto>> UpdateShop(UpdateShopDto updateShop)
         {
             var serviceResponse = new ServiceResponse<GetShopDto>();
 
             try
             {
-                
+
             }
             catch (Exception ex)
             {
