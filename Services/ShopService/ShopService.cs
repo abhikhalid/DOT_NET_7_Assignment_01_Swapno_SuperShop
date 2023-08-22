@@ -74,6 +74,7 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Services.ShopService
                 }
 
                 _context.Shops.Remove(shop);
+
                 await _context.SaveChangesAsync();
 
                 serviceResponse.Data = await _context.Shops
@@ -109,6 +110,19 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Services.ShopService
 
             try
             {
+                var shop = await _context.Shops.Include(shop => shop.Manager).Include(shop => shop.Products)
+                           .FirstOrDefaultAsync(shop => shop.Id == updateShop.Id);
+
+                if (shop == null || shop.Manager!.Id != GetManagerId())
+                {
+                    throw new Exception("Shop with Id " + updateShop.Id + " not found!");
+                }
+
+                _mapper.Map(updateShop,shop);
+
+                await _context.SaveChangesAsync();
+
+                serviceResponse.Data = _mapper.Map<GetShopDto>(shop);
 
             }
             catch (Exception ex)

@@ -15,7 +15,8 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop
         {
             CreateMap<Shop, GetShopDto>();
             // CreateMap<Shop, GetShopDto>().ReverseMap();
-            CreateMap<AddShopDto, Shop>();
+            CreateMap<AddShopDto, Shop>().ReverseMap();
+            CreateMap<UpdateShopDto, Shop>();
             CreateMap<Manager, GetManagerDto>();
             CreateMap<Product, GetProductDto>();
         }

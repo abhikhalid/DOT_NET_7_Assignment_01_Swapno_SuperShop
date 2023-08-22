@@ -34,6 +34,19 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Controllers
             return Ok(await _shopService.AddShop(newShop));
         }
 
+        [HttpDelete("{shopId}")]
+        public async Task<ActionResult<ServiceResponse<List<GetShopDto>>>> DeleteShop(int shopId)
+        {
+            var response = await _shopService.DeleteShop(shopId);
+
+            if (response.Data is null)
+            {
+                return NotFound(response);
+            }
+
+            return Ok(response);
+        }
+
         [HttpPost("Product")]
         public async Task<ActionResult<ServiceResponse<GetShopDto>>> AddShopProduct(AddShopProductDto newShopProduct)
         {
@@ -45,5 +58,19 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Controllers
         {
             return Ok(await _shopService.GetShopById(shopId));
         }
+
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<GetShopDto>>> UpdateShop(UpdateShopDto updateShop)
+        {
+            var response = await _shopService.UpdateShop(updateShop);
+
+            if (response.Data is null)
+            {
+                return NotFound(response);
+            }
+
+            return Ok(response);
+        }
+
     }
 }

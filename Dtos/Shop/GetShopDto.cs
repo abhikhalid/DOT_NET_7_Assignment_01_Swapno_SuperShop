@@ -10,10 +10,10 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Dtos.Shop
 {
     public class GetShopDto
     {
-        public string ShopName { get; set; } = "SHWAPNO";
+        public string Name { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;
 
-        public string MobileNo { get; set; } = string.Empty;
+        public string PhoneNo { get; set; } = string.Empty;
 
         public GetManagerDto? Manager { get; set; }
 
