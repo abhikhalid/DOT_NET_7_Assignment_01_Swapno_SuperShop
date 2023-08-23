@@ -15,11 +15,11 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Models
 
         public string PhoneNo { get; set; } = string.Empty;
 
-        public Manager? Manager { get; set; }
+        public Manager Manager { get; set; }
 
         public int ManagerId { get; set; }
 
-        public List<Product>? Products { get; set; }
+        public List<Product> Products { get; set; }
 
         public List<Invoice> Invoices { get; set; }
     }

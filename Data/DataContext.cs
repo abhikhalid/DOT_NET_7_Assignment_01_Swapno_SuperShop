@@ -29,6 +29,9 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Data
 
         public DbSet<Customer> Customers => Set<Customer>();
         public DbSet<Product> Products => Set<Product>();
+        public DbSet<Invoice> Invoices => Set<Invoice>();
+
+
 
     }
 }

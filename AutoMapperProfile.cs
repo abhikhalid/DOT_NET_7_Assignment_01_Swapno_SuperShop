@@ -23,6 +23,8 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop
             CreateMap<Customer, GetCustomerDto>().ReverseMap();
             CreateMap<Customer, UpdateCustomerDto>().ReverseMap();
             CreateMap<AddCustomerDto, Customer>().ReverseMap();
+            
+            CreateMap<AddCustomerDto, Customer>().ReverseMap();
         }
     }
 }

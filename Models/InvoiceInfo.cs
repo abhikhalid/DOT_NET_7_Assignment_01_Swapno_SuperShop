@@ -13,6 +13,6 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Models
 
         public Product Product { get; set; }
 
-        public int Quantity { get; set; }
+        public int SoldQuantity { get; set; }
     }
 }

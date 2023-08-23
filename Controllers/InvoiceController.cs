@@ -24,29 +24,22 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Controllers
             _invoiceService = invoiceService;
         }
 
+        // [HttpGet("GetAll")]
+        // public async Task<ActionResult<ServiceResponse<List<GetInvoiceDto>>>> GetAllInvoices()
+        // {
 
-        [HttpDelete("{invoiceId}")]
-        public async Task<ActionResult<ServiceResponse<List<GetInvoiceDto>>>> DeleteInvoice(int invoiceId)
-        {
+        // }
 
-        }
+        // [HttpGet("{invoiceId}")]
+        // public async Task<ActionResult<ServiceResponse<GetInvoiceDto>>> GetInvoiceById(int invoiceId)
+        // {
 
-        [HttpGet("GetAll")]
-        public async Task<ActionResult<ServiceResponse<List<GetInvoiceDto>>>> GetAllInvoices()
-        {
-
-        }
-
-        [HttpGet("{invoiceId}")]
-        public async Task<ActionResult<ServiceResponse<GetInvoiceDto>>> GetInvoiceById(int invoiceId)
-        {
-
-        }
+        // }
 
         [HttpPost]
         public async Task<ActionResult<ServiceResponse<List<GetInvoiceDto>>>> SellProduct(AddSellProductDto sellProductDto)
         {
-
+            return Ok(await _invoiceService.SellProduct(sellProductDto));
         }
     }
 }

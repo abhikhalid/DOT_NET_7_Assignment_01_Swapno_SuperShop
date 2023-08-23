@@ -4,6 +4,7 @@ using DOT_NET_7_Assignment_01_Swapno_SuperShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230823100938_Invoice_InvoiceInfo_Model_Added")]
+    partial class Invoice_InvoiceInfo_Model_Added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -188,8 +191,7 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ManagerId")
-                        .IsUnique();
+                    b.HasIndex("ManagerId");
 
                     b.ToTable("Shops");
                 });
@@ -231,7 +233,7 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Migrations
                         .HasForeignKey("InvoiceId");
 
                     b.HasOne("DOT_NET_7_Assignment_01_Swapno_SuperShop.Models.Product", "Product")
-                        .WithMany("InvoiceInfos")
+                        .WithMany()
                         .HasForeignKey("ProductId");
 
                     b.Navigation("Invoice");
@@ -242,8 +244,8 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Migrations
             modelBuilder.Entity("DOT_NET_7_Assignment_01_Swapno_SuperShop.Models.Shop", b =>
                 {
                     b.HasOne("DOT_NET_7_Assignment_01_Swapno_SuperShop.Models.Manager", "Manager")
-                        .WithOne("Shop")
-                        .HasForeignKey("DOT_NET_7_Assignment_01_Swapno_SuperShop.Models.Shop", "ManagerId")
+                        .WithMany()
+                        .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -271,16 +273,6 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Migrations
                 });
 
             modelBuilder.Entity("DOT_NET_7_Assignment_01_Swapno_SuperShop.Models.Invoice", b =>
-                {
-                    b.Navigation("InvoiceInfos");
-                });
-
-            modelBuilder.Entity("DOT_NET_7_Assignment_01_Swapno_SuperShop.Models.Manager", b =>
-                {
-                    b.Navigation("Shop");
-                });
-
-            modelBuilder.Entity("DOT_NET_7_Assignment_01_Swapno_SuperShop.Models.Product", b =>
                 {
                     b.Navigation("InvoiceInfos");
                 });

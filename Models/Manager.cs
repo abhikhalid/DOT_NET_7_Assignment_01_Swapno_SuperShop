@@ -16,6 +16,6 @@ namespace DOT_NET_7_Assignment_01_Swapno_SuperShop.Models
         public byte[] PasswordHash { get; set; } = new byte[0];
         public byte[] PasswordSalt { get; set; } = new byte[0];
 
-        // public Shop? Shop { get; set; }
+        public Shop Shop { get; set; }
     }
 }
